@@ -6,7 +6,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
@@ -125,11 +124,6 @@ class CategoryController extends Controller
                 'status' => 200,
                 'message' => 'Category deleted successfully'
             ], 200);
-        } catch (QueryException $e) {
-            return response()->json([
-                'status' => 400,
-                'message' => 'Cannot delete a category with existing products.'
-            ], 400);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 500,
